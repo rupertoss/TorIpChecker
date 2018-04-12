@@ -7,22 +7,26 @@ import java.util.Set;
 import org.springframework.stereotype.Component;
 
 @Component
-class TorIpData {
+class TorIpAddr {
 
 	// collection of Tor IP addresses stored as Strings
-	private static Set<String> torIpSet = new HashSet<>();
+	private Set<String> torIpSet = new HashSet<>();
 	
-	private static Instant fetchedDate;
+	private Instant fetchedDate;
 	
-	static Set<String> getTorIpSet() {
+	Set<String> getTorIpSet() {
 		return torIpSet;
 	}
 
-	static Instant getFetchedDate() {
+	void setTorIpSet(Set<String> torIpSet) {
+		this.torIpSet = torIpSet;
+	}
+
+	Instant getFetchedDate() {
 		return fetchedDate;
 	}
 
-	static void setFetchedDate(Instant date) {
+	void setFetchedDate(Instant date) {
 		fetchedDate = date;
 	}
 }
