@@ -13,15 +13,15 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
-class TorIpAddrService {
-	
-	TorIpAddr torIpAddr;
+class TorIpAddrFetcher {
 	
 	private static final long fetchInterval = 30*60*1000; // 30min
 	private static final String torIpUrl = "https://check.torproject.org/exit-addresses";
 	
 	@Autowired
-	TorIpAddrService(TorIpAddr torIpAddr) {
+	TorIpAddr torIpAddr;
+	
+	TorIpAddrFetcher(TorIpAddr torIpAddr) {
 		this.torIpAddr = torIpAddr;
 	}
 	
@@ -49,9 +49,5 @@ class TorIpAddrService {
 			throw new IOException("Could not fetch Tor IP addresses");
 		}
 		return fetchedTorIpAddresses;
-	}
-	
-	boolean isTorIp(String ipAddress) {
-		return torIpAddr.getTorIpSet().contains(ipAddress);
 	}
 }

@@ -7,10 +7,10 @@ import java.time.Instant;
 
 import org.junit.Test;
 
-public class TorIpAddrServiceTest {
+public class TorIpAddrFetcherTest {
 	
 	private TorIpAddr torIpAddrStub = new TorIpAddr();
-	private TorIpAddrService torIpAddrService = new TorIpAddrService(torIpAddrStub);
+	private TorIpAddrFetcher torIpAddrService = new TorIpAddrFetcher(torIpAddrStub);
 	
 	@Test
 	public void testUpdateTorAddresses() throws Exception {

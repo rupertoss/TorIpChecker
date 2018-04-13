@@ -29,4 +29,12 @@ class TorIpAddr {
 	void setFetchedDate(Instant date) {
 		fetchedDate = date;
 	}
+	
+	int getTorIpSetSize() {
+		return torIpSet.size();
+	}
+	
+	boolean isTorIp(String ipAddress) {
+		return torIpSet.contains(ipAddress);
+	}
 }
