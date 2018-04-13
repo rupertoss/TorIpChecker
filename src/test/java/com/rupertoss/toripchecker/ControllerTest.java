@@ -82,4 +82,21 @@ public class ControllerTest extends AbstractionTest {
 		assertEquals(404, status);
 		assertEquals(0, content);
 	}
+	
+	@Test
+	public void testGetTorIpCheck_whenExceptionIsThrown_shouldRespondStatus500() throws Exception {
+		String request = "A.B.C.D";
+		
+		String uri = "/{A.B.C.D}";
+		
+		when(torIpAddr.isTorIp(request)).thenThrow(RuntimeException.class);
+		
+		MvcResult result = mvc.perform(MockMvcRequestBuilders.get(uri, request)).andReturn();
+		
+		int status = result.getResponse().getStatus();
+		String content = result.getResponse().getContentAsString();
+		
+		assertEquals(500, status);
+		assertTrue(content.trim().length() > 0);
+	}
 }

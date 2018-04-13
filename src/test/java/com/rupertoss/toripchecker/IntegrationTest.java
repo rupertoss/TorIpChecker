@@ -1,6 +1,7 @@
 package com.rupertoss.toripchecker;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class IntegrationTest {
 		int status = result.getResponse().getStatus();
 		int content = result.getResponse().getContentLength();
 		
-		Assert.assertEquals(404, status);
-		Assert.assertEquals(0, content);
+		assertEquals(404, status);
+		assertEquals(0, content);
 	}
 }
