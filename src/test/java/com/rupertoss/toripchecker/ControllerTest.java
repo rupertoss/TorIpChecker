@@ -4,28 +4,30 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(Controller.class)
+@AutoConfigureWebMvc
 public class ControllerTest extends AbstractionTest {
 
 	@Rule
 	public MockitoRule rule = MockitoJUnit.rule();
 	
+	@Autowired
 	private MockMvc mvc;
 	
 	@MockBean
@@ -33,11 +35,6 @@ public class ControllerTest extends AbstractionTest {
 	
 	@InjectMocks
 	Controller controller;
-	
-	@Before
-	public void setUp() {
-		mvc = MockMvcBuilders.standaloneSetup(controller).build();
-	}
 	
 	@Test
 	public void testGetStatus() throws Exception {
@@ -53,7 +50,7 @@ public class ControllerTest extends AbstractionTest {
 	}
 
 	@Test
-	public void testGetStatus_whenRequestedIpIsTorIp_shouldRespondStatus200() throws Exception {
+	public void testGetTorIpCheck_whenRequestedIpIsTorIp_shouldRespondStatus200() throws Exception {
 		String request = "A.B.C.D";
 		String uri = "/{A.B.C.D}";
 		
@@ -70,7 +67,7 @@ public class ControllerTest extends AbstractionTest {
 	}
 	
 	@Test
-	public void testGetStatus_whenRequestedIpIsNotTorIp_shouldRespondStatus404() throws Exception {
+	public void testGetTorIpCheck_whenRequestedIpIsNotTorIp_shouldRespondStatus404() throws Exception {
 		String request = "A.B.C.D";
 		
 		String uri = "/{A.B.C.D}";
