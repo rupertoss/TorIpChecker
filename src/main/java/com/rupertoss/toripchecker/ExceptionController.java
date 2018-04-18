@@ -18,16 +18,16 @@ class ExceptionController {
 		private String message;
 		private String errorClass;
 
-		public ErrorMessage(String message, String errorClass) {
+		ErrorMessage(String message, String errorClass) {
 			this.message = message;
 			this.errorClass = errorClass;
 		}
 
-		public String getMessage() {
+		String getMessage() {
 			return message;
 		}
 
-		public String getErrorClass() {
+		String getErrorClass() {
 			return errorClass;
 		}
 	}
